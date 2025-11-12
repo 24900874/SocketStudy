@@ -1,4 +1,7 @@
 # Ex.No:1a  			Study of Socket Programming
+# NAME :GEETHAPRIYAN A S
+# REG NO : 212224230074
+
 
 ## Aim: 
 To perform a study on Socket Programming
@@ -53,44 +56,37 @@ Socket programming finds applications in various domains, including web developm
 4.	Networked Games: Online multiplayer games rely on socket programming to facilitate communication between game clients and servers.
 5.	RPC mechanisms: which allow processes to execute code on a remote server, often use socket programming for communication.
 
-## PROGRAM :
-## NAME :GEETHAPRIYAN A S
-## REG NO : 212224230074
-### CLIENT :
+## programm:
+# server
 ```
 import socket
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.connect(('localhost', 8000))
-print(f"Client connected from: {client_socket.getsockname()}")
-server_message = client_socket.recv(1024).decode()
-print(f"Received from server: {server_message}")
-client_socket.send("Acknowledgement received from the client.".encode())
-client_socket.close()
+s=socket.socket()
+s.connect(('localhost',8000))
+print(s.getsockname())
+print(s.recv(1024).decode())
+s.send("acknowledgement recived from the server".encode())
 ```
-### SERVER:
+
+# client
 ```
 import socket
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server_socket.bind(('localhost', 8000))
-server_socket.listen(1)
-print("Server is waiting for a connection...")
-conn, addr = server_socket.accept()
-print(f"Connected by {addr}")
-conn.send("Hello from the server!".encode())
-data = conn.recv(1024)
-print(f"Received from client: {data.decode()}")
-conn.close()
-server_socket.close()
+from datetime import datetime
+s=socket.socket()
+s.bind(('localhost',8000))
+s.listen(5)
+c,addr=s.accept()
+print("Client Address : ",addr)
+now = datetime.now()
+c.send(now.strftime("%d/%m/%Y %H:%M:%S").encode())
+ack=c.recv(1024).decode()
+if ack:
+ print(ack)
+c.close()
 ```
-## OUTPUT :
 
-### CLIENT :
-<img width="612" height="297" alt="image" src="https://github.com/user-attachments/assets/25f2aabb-1931-4467-9185-af028eac05cf" />
+# output:
 
-### SERVER :
-<img width="847" height="223" alt="image" src="https://github.com/user-attachments/assets/56133f7a-4429-4a94-9599-8bedd1d0bfd4" />
-
-
+<img width="1919" height="1016" alt="image" src="https://github.com/user-attachments/assets/394fd51e-dd23-43b9-8dc2-70960bba8324" />
 
 ## Result:
 Thus the study of Socket Programming Completed Successfully
